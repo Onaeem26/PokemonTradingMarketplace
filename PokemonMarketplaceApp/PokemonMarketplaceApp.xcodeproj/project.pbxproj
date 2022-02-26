@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F58591AC27C5BD2800DC7B62 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58591AB27C5BD2800DC7B62 /* CardView.swift */; };
+		F58591AF27C5ED7000DC7B62 /* PokemonCardsFeedNetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58591AE27C5ED7000DC7B62 /* PokemonCardsFeedNetworkProtocol.swift */; };
+		F58591B127C5EE0D00DC7B62 /* PokemonCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58591B027C5EE0D00DC7B62 /* PokemonCardModel.swift */; };
+		F58591B327C5F07000DC7B62 /* PokemonCardsFeedNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58591B227C5F07000DC7B62 /* PokemonCardsFeedNetworkManager.swift */; };
+		F58591B527C5F23F00DC7B62 /* PokemonCardsFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58591B427C5F23F00DC7B62 /* PokemonCardsFeedViewModel.swift */; };
+		F58591B827C73F3E00DC7B62 /* DetailCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58591B727C73F3E00DC7B62 /* DetailCardView.swift */; };
+		F58591BA27C88E2C00DC7B62 /* PostBidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58591B927C88E2C00DC7B62 /* PostBidView.swift */; };
 		F599EE2A279AAEE00006019B /* PokemonMarketplaceAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599EE29279AAEE00006019B /* PokemonMarketplaceAppApp.swift */; };
 		F599EE2C279AAEE00006019B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599EE2B279AAEE00006019B /* ContentView.swift */; };
 		F599EE2E279AAEE10006019B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F599EE2D279AAEE10006019B /* Assets.xcassets */; };
@@ -27,6 +34,9 @@
 		F5F235C4279D858B00697411 /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F235C3279D858B00697411 /* UserDataModel.swift */; };
 		F5F235C6279D85FB00697411 /* UserDataCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F235C5279D85FB00697411 /* UserDataCreationView.swift */; };
 		F5F6268027A00CDD009DBABB /* UserFlowModeratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F6267F27A00CDD009DBABB /* UserFlowModeratorView.swift */; };
+		F5F76EBD27BF263600AE7AAC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F76EBC27BF263600AE7AAC /* HomeView.swift */; };
+		F5F76EBF27BF26DF00AE7AAC /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F76EBE27BF26DF00AE7AAC /* FeedView.swift */; };
+		F5F76EC127BF279E00AE7AAC /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F76EC027BF279E00AE7AAC /* AccountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +50,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F58591AB27C5BD2800DC7B62 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		F58591AE27C5ED7000DC7B62 /* PokemonCardsFeedNetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCardsFeedNetworkProtocol.swift; sourceTree = "<group>"; };
+		F58591B027C5EE0D00DC7B62 /* PokemonCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCardModel.swift; sourceTree = "<group>"; };
+		F58591B227C5F07000DC7B62 /* PokemonCardsFeedNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCardsFeedNetworkManager.swift; sourceTree = "<group>"; };
+		F58591B427C5F23F00DC7B62 /* PokemonCardsFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCardsFeedViewModel.swift; sourceTree = "<group>"; };
+		F58591B727C73F3E00DC7B62 /* DetailCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardView.swift; sourceTree = "<group>"; };
+		F58591B927C88E2C00DC7B62 /* PostBidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBidView.swift; sourceTree = "<group>"; };
 		F599EE26279AAEE00006019B /* PokemonMarketplaceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonMarketplaceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F599EE29279AAEE00006019B /* PokemonMarketplaceAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonMarketplaceAppApp.swift; sourceTree = "<group>"; };
 		F599EE2B279AAEE00006019B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +72,9 @@
 		F5F235C3279D858B00697411 /* UserDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
 		F5F235C5279D85FB00697411 /* UserDataCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataCreationView.swift; sourceTree = "<group>"; };
 		F5F6267F27A00CDD009DBABB /* UserFlowModeratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFlowModeratorView.swift; sourceTree = "<group>"; };
+		F5F76EBC27BF263600AE7AAC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		F5F76EBE27BF26DF00AE7AAC /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		F5F76EC027BF279E00AE7AAC /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +102,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F58591AD27C5ED4400DC7B62 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				F58591AE27C5ED7000DC7B62 /* PokemonCardsFeedNetworkProtocol.swift */,
+				F58591B227C5F07000DC7B62 /* PokemonCardsFeedNetworkManager.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		F58591B627C5F24800DC7B62 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F58591B427C5F23F00DC7B62 /* PokemonCardsFeedViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		F599EE1D279AAEDF0006019B = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +144,8 @@
 				F5F235C2279D857B00697411 /* Model */,
 				F599EE4A279AB4220006019B /* SignUpFlow */,
 				F5F6267E27A00B12009DBABB /* MainView */,
+				F58591AD27C5ED4400DC7B62 /* NetworkManager */,
+				F58591B627C5F24800DC7B62 /* ViewModel */,
 				F599EE46279AB09E0006019B /* AppDelegate.swift */,
 				F599EE29279AAEE00006019B /* PokemonMarketplaceAppApp.swift */,
 				F599EE2B279AAEE00006019B /* ContentView.swift */,
@@ -148,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				F5F235C3279D858B00697411 /* UserDataModel.swift */,
+				F58591B027C5EE0D00DC7B62 /* PokemonCardModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -155,6 +195,12 @@
 		F5F6267E27A00B12009DBABB /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				F5F76EBC27BF263600AE7AAC /* HomeView.swift */,
+				F5F76EBE27BF26DF00AE7AAC /* FeedView.swift */,
+				F5F76EC027BF279E00AE7AAC /* AccountView.swift */,
+				F58591AB27C5BD2800DC7B62 /* CardView.swift */,
+				F58591B727C73F3E00DC7B62 /* DetailCardView.swift */,
+				F58591B927C88E2C00DC7B62 /* PostBidView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -272,14 +318,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5F76EC127BF279E00AE7AAC /* AccountView.swift in Sources */,
 				F599EE47279AB09E0006019B /* AppDelegate.swift in Sources */,
 				F599EE4C279AB4480006019B /* RegisterView.swift in Sources */,
+				F58591BA27C88E2C00DC7B62 /* PostBidView.swift in Sources */,
 				F5F6268027A00CDD009DBABB /* UserFlowModeratorView.swift in Sources */,
+				F5F76EBD27BF263600AE7AAC /* HomeView.swift in Sources */,
 				F5F235C4279D858B00697411 /* UserDataModel.swift in Sources */,
 				F599EE2C279AAEE00006019B /* ContentView.swift in Sources */,
+				F58591B827C73F3E00DC7B62 /* DetailCardView.swift in Sources */,
+				F58591AC27C5BD2800DC7B62 /* CardView.swift in Sources */,
+				F5F76EBF27BF26DF00AE7AAC /* FeedView.swift in Sources */,
 				F599EE4E279AB4530006019B /* LoginView.swift in Sources */,
+				F58591AF27C5ED7000DC7B62 /* PokemonCardsFeedNetworkProtocol.swift in Sources */,
+				F58591B127C5EE0D00DC7B62 /* PokemonCardModel.swift in Sources */,
 				F599EE5D279AB9020006019B /* ValidationServices.swift in Sources */,
+				F58591B527C5F23F00DC7B62 /* PokemonCardsFeedViewModel.swift in Sources */,
 				F5F235C6279D85FB00697411 /* UserDataCreationView.swift in Sources */,
+				F58591B327C5F07000DC7B62 /* PokemonCardsFeedNetworkManager.swift in Sources */,
 				F599EE2A279AAEE00006019B /* PokemonMarketplaceAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,7 +491,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -465,7 +521,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
