@@ -11,6 +11,7 @@ import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 
 import { getFirestore,collection, getDocs,doc,getDoc ,setDoc,addDoc } from "firebase/firestore"
+import { useUserAuth } from "../../../UserAuthContext";
 
 
 import Popup from 'reactjs-popup';
@@ -21,6 +22,7 @@ import DataTable from 'react-data-table-component';
 
 function BidsPage()  {
   const params = useParams();
+  const {user} = useUserAuth();
   const[isLoading,setIsLoading] = useState(true)
   const[bidExists,setbidExists] = useState(false)
   const[bgImage,setbgImage]  = useState("")
