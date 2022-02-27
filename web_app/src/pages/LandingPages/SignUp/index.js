@@ -1,7 +1,7 @@
 import { useState,useCallback } from "react";
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -19,20 +19,27 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useUserAuth } from "../../../UserAuthContext";
 
 function SignUp() {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [password, setPassword] = useState("");
+  const { signUp } = useUserAuth();
+  let navigate = useNavigate();
 
-  const handleSignUp = useCallback(async event => {
-    const auth = getAuth();
-    event.preventDefault();
-    const { email, password } = event.target.elements;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
     try {
-      createUserWithEmailAndPassword(auth,email.value, password.value);
-    } catch (error) {
-      alert(error);
+      await signUp(email, password);
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
     }
-  });
+  };
+
+
   return (
     <>
       <MKBox px={1} width="100%" height="100vh" mx="auto" position="relative" zIndex={2}>
@@ -55,12 +62,12 @@ function SignUp() {
                 </MKTypography>
               </MKBox>
               <MKBox pt={4} pb={3} px={3}>
-                <MKBox component="form" role="form" onSubmit={handleSignUp}>
+                <MKBox component="form" role="form" onSubmit={handleSubmit}>
                   <MKBox mb={2}>
-                    <MKInput name="email" type="email" label="Email" fullWidth />
+                    <MKInput name="email" type="email" label="Email" fullWidth onChange={(e) => setEmail(e.target.value)} />
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput name="password" type="password" label="Password" fullWidth />
+                    <MKInput name="password" type="password" label="Password" fullWidth onChange={(e) => setPassword(e.target.value)} />
                   </MKBox>
                   <MKBox display="flex" alignItems="center" ml={-1}>
                   </MKBox>
