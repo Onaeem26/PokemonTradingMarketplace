@@ -22,33 +22,33 @@ import DataTable from 'react-data-table-component';
 function BidsPage()  {
   const params = useParams();
   const {user} = useUserAuth();
-  const[isLoading,setIsLoading] = useState(true)
-  const[bidExists,setbidExists] = useState(false)
-  const[bgImage,setbgImage]  = useState("")
-  const[bidData,setbidData]  = useState([])
+  const [bidprice, setBidPrice] = useState(0);
+  const [isLoading,setIsLoading] = useState(true)
+  const [bidExists,setbidExists] = useState(false)
+  const [bgImage,setbgImage]  = useState("")
+
+  const[bid_username,setUserName]  = useState("")
+  const[bid_price,setPrice]  = useState("")
+
+  const [error, setError] = useState("");
 
 
   const columns = [
     {
         name: 'Username',
-        selector: row => row.username,
+        selector: row => row.bid_username,
     },
     {
         name: 'Price',
-        selector: row => row.price,
+        selector: row => row.bid_price,
     },
-];
+  ];
 
 const data = [
     {
         id: 1,
-        username: 'user_1',
-        price: '25$',
-    },
-    {
-        id: 2,
-        username: 'user_2',
-        price: '22$',
+        bid_username: bid_username,
+        bid_price: bid_price,
     },
   ]
 
@@ -68,8 +68,8 @@ const data = [
     const docSnap2 = await getDoc(docRef2);
 
     if (docSnap2.exists()) {
-    console.log(docSnap2.data())
-    setbidData(docSnap2.data())
+    setUserName(user.email)
+    setPrice(docSnap2.data().user_price[0].price)
     setbidExists(true)
     } else {
     console.log("No such document!");
@@ -78,30 +78,30 @@ const data = [
 
   },[])
 
-  const handleBid = useCallback(async event => {
-    event.preventDefault();
-    const { price } = event.target.elements;
+
+  const handleBid = async (e) => {
+    e.preventDefault();
+    setError("");
+    console.log(user)
     try {
       const db = getFirestore();
       // Add a new document in collection "cities"
       await setDoc(doc(db, "Bids","bid_"+params.id), {
         card_id: params.id,
-        user_price: [{user_id:"123456",price:price.value}],
+        user_price: [{user:user.uid,price:bidprice}],
         status: true,
         duration: 10,
       });
-
-    } catch (error) {
-      alert(error);
+    } catch (err) {
+      setError(err.message);
     }
-  });
+  };
 
   if(!isLoading){
     return (
       <>
         
         <Grid container spacing={0.5} alignItems="center">
-       
           <Grid item xs={12} lg={6}>
             <MKBox
               display={{ xs: "none", lg: "flex" }}
@@ -133,7 +133,7 @@ const data = [
               mt={{ xs: 20, sm: 18, md: 20 }}
               mb={{ xs: 20, sm: 18, md: 20 }}
               mx={0.001}
-            >
+              > 
               <MKBox
                 variant="gradient"
                 bgColor="info"
@@ -146,7 +146,6 @@ const data = [
                 <MKTypography variant="h3" color="white">
                   Bids
                 </MKTypography>
-                
               </MKBox>
               <MKBox p={3}>
                 <div>
@@ -158,7 +157,6 @@ const data = [
                     : <div>No Data</div>
                   }
                 </div>
-
                 <MKBox width="100%" component="form" method="post" autocomplete="off">
                   <Grid container item justifyContent="center" xs={12} mt={5} mb={2}>
                     <Popup
@@ -177,7 +175,7 @@ const data = [
                           <div className="content">
                           <MKBox component="form" role="form" onSubmit={handleBid}>
                           <MKBox mb={3}>
-                            <MKInput name="price" type="price" label="Price" fullWidth />
+                            <MKInput name="bidprice" type="price" label="Price" fullWidth onChange={(e) => setBidPrice(e.target.value)}/>
                           </MKBox>
                           <MKBox mt={4} mb={1}>
                             <MKButton variant="gradient" color="info" type="submit" fullWidth>
