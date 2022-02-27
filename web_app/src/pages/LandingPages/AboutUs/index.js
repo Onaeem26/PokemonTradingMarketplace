@@ -42,11 +42,25 @@ import MenuIcon from '@mui/icons-material/Menu';
 // Routes
 import routes from "routes";
 import footerRoutes from "footer.routes";
+import { useNavigate } from "react-router";
+import { useUserAuth } from "../../../UserAuthContext";
 
 // Images
 import bgImage from "assets/images/bg-market.jpg";
 
 function AboutUs() {
+
+  const { logOut, user } = useUserAuth();
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <>
      
@@ -66,6 +80,9 @@ function AboutUs() {
             News
           </Typography>
           <Button color="inherit">Login</Button>
+          <Button variant="primary" onClick={handleLogout}>
+          Log out
+        </Button>
         </Toolbar>
       </AppBar>
     </Box>
