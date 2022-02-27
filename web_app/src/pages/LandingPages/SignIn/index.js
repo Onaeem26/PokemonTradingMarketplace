@@ -1,17 +1,15 @@
 import React from 'react'
-import { useState,useCallback } from "react";
+import { useState } from "react";
 
 import { Link,useNavigate  } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
-import Switch from "@mui/material/Switch";
 import Grid from "@mui/material/Grid";
 import MuiLink from "@mui/material/Link";
 
 // @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GitHubIcon from "@mui/icons-material/GitHub";
+
 import GoogleIcon from "@mui/icons-material/Google";
 
 // Material Kit 2 React components

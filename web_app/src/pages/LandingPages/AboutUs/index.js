@@ -8,16 +8,9 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import MKButton from "components/MKButton";
 
-// Material Kit 2 React examples
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import DefaultFooter from "examples/Footers/DefaultFooter";
 
 // About Us page sections
 import Information from "pages/LandingPages/AboutUs/sections/Information";
-import Team from "pages/LandingPages/AboutUs/sections/Team";
-import Featuring from "pages/LandingPages/AboutUs/sections/Featuring";
-import Newsletter from "pages/LandingPages/AboutUs/sections/Newsletter";
-
 
 import * as React from 'react';
 import CardContent from '@mui/material/CardContent';
@@ -40,8 +33,6 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
 // Routes
-import routes from "routes";
-import footerRoutes from "footer.routes";
 import { useNavigate } from "react-router";
 import { useUserAuth } from "../../../UserAuthContext";
 

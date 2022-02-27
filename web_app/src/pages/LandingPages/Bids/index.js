@@ -1,8 +1,7 @@
 import { useEffect,useState,useCallback } from "react";
 import Grid from "@mui/material/Grid";
-import React, { Component } from 'react';
+import React from 'react';
 import { useParams } from "react-router-dom";
-import { useGetDataOne } from "../../../hooks/useGetData";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
@@ -10,7 +9,7 @@ import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 
-import { getFirestore,collection, getDocs,doc,getDoc ,setDoc,addDoc } from "firebase/firestore"
+import { getFirestore,doc,getDoc ,setDoc } from "firebase/firestore"
 import { useUserAuth } from "../../../UserAuthContext";
 
 

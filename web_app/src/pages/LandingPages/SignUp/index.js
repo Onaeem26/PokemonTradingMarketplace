@@ -1,18 +1,12 @@
-import { useState,useCallback } from "react";
+import { useState } from "react";
 
 // react-router-dom components
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
-import Switch from "@mui/material/Switch";
 import Grid from "@mui/material/Grid";
-import MuiLink from "@mui/material/Link";
 
-// @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import GoogleIcon from "@mui/icons-material/Google";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
@@ -91,8 +85,9 @@ function SignUp() {
                   </MKBox>
                   <MKBox mt={4} mb={1}>
                     <MKButton variant="gradient" color="info" type="submit" fullWidth>
-                      sign up
+                      Sign up
                     </MKButton>
+                    <div>{error}</div>
                   </MKBox>
                   <MKBox mt={3} mb={1} textAlign="center">
                   </MKBox>
