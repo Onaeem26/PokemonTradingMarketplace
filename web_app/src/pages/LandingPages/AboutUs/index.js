@@ -126,7 +126,7 @@ function AboutUs() {
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-        {/* <Information /> */}
+        <Information />
         {/* <Team />
         <Featuring />
         <Newsletter /> */}
