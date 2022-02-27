@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState,useCallback } from "react";
 
-import { Link } from "react-router-dom";
+import { Link,useNavigate  } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -20,22 +20,36 @@ import MKTypography from "components/MKTypography";
 import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
 
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
+import { useUserAuth } from "../../../UserAuthContext";
 
 function SignInBasic() {
 
-  const handleSignIn = useCallback(async event => {
-    const auth = getAuth();
-    event.preventDefault();
-    const { email, password } = event.target.elements;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { logIn, googleSignIn } = useUserAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
     try {
-      signInWithEmailAndPassword(auth,email.value, password.value);
-      console.log("success")
-    } catch (error) {
-      alert(error);
+      await logIn(email, password);
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
     }
-  });
+  };
+
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await googleSignIn();
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <>
@@ -58,36 +72,28 @@ function SignInBasic() {
                   Sign in
                 </MKTypography>
                 <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
+
                   <Grid item xs={2}>
                     <MKTypography component={MuiLink} href="#" variant="body1" color="white">
-                      <FacebookIcon color="inherit" />
-                    </MKTypography>
-                  </Grid>
-                  <Grid item xs={2}>
-                    <MKTypography component={MuiLink} href="#" variant="body1" color="white">
-                      <GitHubIcon color="inherit" />
-                    </MKTypography>
-                  </Grid>
-                  <Grid item xs={2}>
-                    <MKTypography component={MuiLink} href="#" variant="body1" color="white">
-                      <GoogleIcon color="inherit" />
+                      <GoogleIcon color="inherit" onClick={handleGoogleSignIn} />
                     </MKTypography>
                   </Grid>
                 </Grid>
               </MKBox>
               <MKBox pt={4} pb={3} px={3}>
-                <MKBox component="form" role="form" onSubmit={handleSignIn}>
+                <MKBox component="form" role="form" onSubmit={handleSubmit}>
                   <MKBox mb={2}>
-                    <MKInput name="email" type="email" label="Email" fullWidth />
+                    <MKInput name="email" type="email" label="Email" fullWidth  onChange={(e) => setEmail(e.target.value)}/>
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput name="password" type="password" label="Password" fullWidth />
+                    <MKInput name="password" type="password" label="Password" fullWidth onChange={(e) => setPassword(e.target.value)}/>
                   </MKBox>
                   <MKBox mt={4} mb={1}>
                     <MKButton variant="gradient" color="info" type="submit" fullWidth>
                       sign in
                     </MKButton>
                   </MKBox>
+                  <div>{error}</div>
                   <MKBox mt={3} mb={1} textAlign="center">
                     <MKTypography variant="button" color="text">
                       Don&apos;t have an account?{" "}

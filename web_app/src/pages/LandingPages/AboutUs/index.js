@@ -79,10 +79,9 @@ function AboutUs() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             News
           </Typography>
-          <Button color="inherit">Login</Button>
           <Button variant="primary" onClick={handleLogout}>
-          Log out
-        </Button>
+            Log out
+            </Button>
         </Toolbar>
       </AppBar>
     </Box>

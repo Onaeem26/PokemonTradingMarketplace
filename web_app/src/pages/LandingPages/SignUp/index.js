@@ -21,18 +21,30 @@ import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
 import { useUserAuth } from "../../../UserAuthContext";
 
+import { getFirestore,collection, addDoc } from "firebase/firestore"
+
 function SignUp() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const { signUp } = useUserAuth();
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    const db = getFirestore();
     try {
-      await signUp(email, password);
+      const res = await signUp(email, password);
+      const user = res.user;
+      await addDoc(collection(db, "Users"), {
+      id: user.uid,
+      email,
+      name:name,
+      phone:phone
+      });
       navigate("/");
     } catch (err) {
       setError(err.message);
@@ -64,9 +76,15 @@ function SignUp() {
               <MKBox pt={4} pb={3} px={3}>
                 <MKBox component="form" role="form" onSubmit={handleSubmit}>
                   <MKBox mb={2}>
+                  <MKBox mb={2}>
+                    <MKInput name="name" type="name" label="Full Name" fullWidth onChange={(e) => setName(e.target.value)} />
+                  </MKBox>
                     <MKInput name="email" type="email" label="Email" fullWidth onChange={(e) => setEmail(e.target.value)} />
                   </MKBox>
                   <MKBox mb={2}>
+                  <MKBox mb={2}>
+                    <MKInput name="phone" type="name" label="phone" fullWidth onChange={(e) => setPhone(e.target.value)} />
+                  </MKBox>
                     <MKInput name="password" type="password" label="Password" fullWidth onChange={(e) => setPassword(e.target.value)} />
                   </MKBox>
                   <MKBox display="flex" alignItems="center" ml={-1}>
