@@ -11,7 +11,7 @@ import CenteredBlogCard from "examples/Cards/BlogCards/CenteredBlogCard";
 
 import { useGetData } from "../../../../hooks/useGetData";
 
-function Information() {
+function PokCards() {
 
   const [documents] = useGetData();
 
@@ -41,4 +41,4 @@ function Information() {
   );
 }
 
-export default Information;
+export default PokCards;

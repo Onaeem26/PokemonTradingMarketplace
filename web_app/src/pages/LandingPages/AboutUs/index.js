@@ -10,7 +10,7 @@ import MKButton from "components/MKButton";
 
 
 // About Us page sections
-import Information from "pages/LandingPages/AboutUs/sections/Information";
+import PokCards from "pages/LandingPages/AboutUs/sections/PokCards";
 
 import * as React from 'react';
 import CardContent from '@mui/material/CardContent';
@@ -130,11 +130,7 @@ function AboutUs() {
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-        <Information />
-        {/* <Team />
-        <Featuring />
-        <Newsletter /> */}
-
+        <PokCards />
       <CardActionArea>
       <CardMedia
           component="img"
