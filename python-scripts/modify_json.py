@@ -4,7 +4,7 @@ import os
 import time
 
 # Please modify the below list of accepted attributes as per your requirements
-attribute_accepted = ['id','name','supertype','artist','images']
+attribute_accepted = ['id','name','supertype', 'level', 'hp', 'types', 'evolvesFrom', 'abilities', 'attacks', 'weaknesses', 'artist','images']
 
 filename = ''
 
