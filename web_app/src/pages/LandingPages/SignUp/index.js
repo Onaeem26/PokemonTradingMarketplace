@@ -34,7 +34,7 @@ function SignUp() {
       const res = await signUp(email, password);
       const user = res.user;
       await addDoc(collection(db, "Users"), {
-      id: user.uid,
+      uid: user.uid,
       email,
       name:name,
       phone:phone

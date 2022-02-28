@@ -1,4 +1,4 @@
-import { useEffect,useState,useCallback } from "react";
+import { useEffect,useState } from "react";
 import Grid from "@mui/material/Grid";
 import React from 'react';
 import { useParams } from "react-router-dom";
@@ -9,7 +9,7 @@ import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 
-import { getFirestore,doc,getDoc ,setDoc } from "firebase/firestore"
+import { getFirestore,doc,getDoc ,setDoc,updateDoc, arrayUnion, arrayRemove } from "firebase/firestore"
 import { useUserAuth } from "../../../UserAuthContext";
 
 
@@ -68,7 +68,7 @@ const data = [
     const docSnap2 = await getDoc(docRef2);
 
     if (docSnap2.exists()) {
-    setUserName(user.email)
+    setUserName(docSnap2.data().user_price[0].user_email)
     setPrice(docSnap2.data().user_price[0].price)
     setbidExists(true)
     } else {
@@ -82,25 +82,40 @@ const data = [
   const handleBid = async (e) => {
     e.preventDefault();
     setError("");
-    console.log(user)
-    try {
-      const db = getFirestore();
-      // Add a new document in collection "cities"
-      await setDoc(doc(db, "Bids","bid_"+params.id), {
-        card_id: params.id,
-        user_price: [{user:user.uid,price:bidprice}],
-        status: true,
-        duration: 10,
-      });
-    } catch (err) {
-      setError(err.message);
+    const db = getFirestore();
+    if(!bidExists){
+      try {
+        // Add a new document in collection "cities"
+        await setDoc(doc(db, "Bids","bid_"+params.id), {
+          card_id: params.id,
+          user_price: [{user_uid:user.uid,user_email:user.email,price:bidprice}],
+          status: true,
+          duration: 10,
+        },{ capital: true }, { merge: true });
+        setbidExists(true)
+      } catch (err) {
+        setError(err.message);
+      }
     }
+    else{
+      try {
+        //get doc
+        const docRef = doc(db, "Bids", "bid_"+params.id);
+        // Atomically add a new region to the "regions" array field.
+        await updateDoc(docRef, {
+          user_price: arrayUnion({user_uid:user.uid,user_email:user.email,price:bidprice})
+        });
+
+      } catch (err) {
+        setError(err.message);
+      }
+    }
+    
   };
 
   if(!isLoading){
     return (
       <>
-        
         <Grid container spacing={0.5} alignItems="center">
           <Grid item xs={12} lg={6}>
             <MKBox
