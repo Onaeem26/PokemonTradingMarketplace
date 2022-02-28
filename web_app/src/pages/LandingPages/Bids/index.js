@@ -26,37 +26,29 @@ function BidsPage()  {
   const [isLoading,setIsLoading] = useState(true)
   const [bidExists,setbidExists] = useState(false)
   const [bgImage,setbgImage]  = useState("")
-
-  const[bid_username,setUserName]  = useState("")
-  const[bid_price,setPrice]  = useState("")
-
+  const[data,setData]  = useState([])
   const [error, setError] = useState("");
 
 
   const columns = [
     {
-        name: 'Username',
+        name: 'User',
         selector: row => row.bid_username,
     },
     {
-        name: 'Price',
+        name: 'Price($)',
         selector: row => row.bid_price,
     },
   ];
 
-const data = [
-    {
-        id: 1,
-        bid_username: bid_username,
-        bid_price: bid_price,
-    },
-  ]
 
   useEffect(async() =>{
     const db = getFirestore();
     const docRef = doc(db, "Cards", params.id);
     const docSnap = await getDoc(docRef);
-
+    
+    let arr = []
+    let arr2 =[]
     if (docSnap.exists()) {
     setbgImage(docSnap.data().images.large)
     setIsLoading(false)
@@ -68,8 +60,11 @@ const data = [
     const docSnap2 = await getDoc(docRef2);
 
     if (docSnap2.exists()) {
-    setUserName(docSnap2.data().user_price[0].user_email)
-    setPrice(docSnap2.data().user_price[0].price)
+    arr = docSnap2.data().user_price;
+    arr.map((item) =>{
+      arr2.push({id:item.uid,bid_username:item.user_email,bid_price:item.price})
+    })
+    setData(arr2)
     setbidExists(true)
     } else {
     console.log("No such document!");
@@ -105,7 +100,6 @@ const data = [
         await updateDoc(docRef, {
           user_price: arrayUnion({user_uid:user.uid,user_email:user.email,price:bidprice})
         });
-
       } catch (err) {
         setError(err.message);
       }
@@ -115,7 +109,6 @@ const data = [
 
   if(!isLoading){
     return (
-      <>
         <Grid container spacing={0.5} alignItems="center">
           <Grid item xs={12} lg={6}>
             <MKBox
@@ -208,7 +201,6 @@ const data = [
             </MKBox>
           </Grid>
         </Grid>
-      </>
     );
 }
 else{
