@@ -20,35 +20,20 @@ import './modal.css'
 
 import DataTable from 'react-data-table-component';
 
-function MyTimer({ expiryTimestamp }) {
-  const {
-    seconds,
-    minutes,
-    hours,
-    days,
-    isRunning,
-  } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
-
-
-  return (
-      <div style={{color:'red'}}>
-        <span>{minutes}</span>:<span>{seconds}</span>
-      </div>
-  );
-}
+import Countdown from 'react-countdown';
 
 function BidsPage()  {
   const params = useParams();
   const {user} = useUserAuth();
   const [bidprice, setBidPrice] = useState(0);
-  const [isLoading,setIsLoading] = useState(true)
-  const [bidExists,setbidExists] = useState(false)
-  const [bgImage,setbgImage]  = useState("")
-  const[data,setData]  = useState([])
   const [error, setError] = useState("");
-  const[timer,setTimer]= useState(false)
-
-  const time = new Date();
+  const [userRequest, setUserRequest] = useState({
+    isLoading: false,
+    timer: false,
+    bidExists:false,
+    data:[],
+    bgImage:"",
+  });
 
   const columns = [
     {
@@ -68,9 +53,13 @@ function BidsPage()  {
     
     let arr = []
     let arr2 =[]
+    let loading
+    let timer
+    let image
     if (docSnap.exists()) {
-    setbgImage(docSnap.data().images.large)
-    setIsLoading(false)
+    image= docSnap.data().images.large
+    loading = false
+    timer = true
     } else {
     console.log("No such document!");
     }
@@ -83,8 +72,13 @@ function BidsPage()  {
     arr.map((item) =>{
       arr2.push({id:item.uid,bid_username:item.user_email,bid_price:item.price})
     })
-    setData(arr2)
-    setbidExists(true)
+    setUserRequest({
+      isLoading: loading,
+      timer: timer,
+      bidExists:true,
+      data:arr2,
+      bgImage:image
+    });
     } else {
     console.log("No such document!");
     }
@@ -97,7 +91,7 @@ function BidsPage()  {
     e.preventDefault();
     setError("");
     const db = getFirestore();
-    if(!bidExists){
+    if(!userRequest.bidExists){
       try {
         // Add a new document in collection "cities"
         await setDoc(doc(db, "Bids","bid_"+params.id), {
@@ -106,9 +100,10 @@ function BidsPage()  {
           status: true,
           duration: 24,
         },{ capital: true }, { merge: true });
-        time.setSeconds(time.getSeconds() + 30);
-        setTimer(true)
-        setbidExists(true)
+        setUserRequest({
+          isLoading: true,
+          timer: true,
+        });
       } catch (err) {
         setError(err.message);
       }
@@ -128,7 +123,7 @@ function BidsPage()  {
     }
   };
 
-  if(!isLoading){
+  if(!userRequest.isLoading){
     return (
      
         <Grid container spacing={0.5} alignItems="center">
@@ -139,7 +134,7 @@ function BidsPage()  {
               height="calc(100vh - 7rem)"
               borderRadius="lg"
 
-              sx={{ backgroundImage: `url(${bgImage})`,backgroundRepeat: 'no-repeat', 
+              sx={{ backgroundImage: `url(${userRequest.bgImage})`,backgroundRepeat: 'no-repeat', 
               backgroundPosition: 'center'}}
             />
           </Grid>
@@ -177,20 +172,18 @@ function BidsPage()  {
                   Bids
                 </MKTypography>
                 <div>
-                {timer
-                    ? <MyTimer expiryTimestamp={time} />
+                {userRequest.timer
+                    ? <div>timer</div>
                     : <div>No Data</div>
                   }
                 </div>
-                
-
               </MKBox>
               <MKBox p={3}>
                 <div>
-                {bidExists
+                {userRequest.bidExists
                     ? <DataTable
                     columns={columns}
-                    data={data}
+                    data={userRequest.data}
                 />
                     : <div>No Data</div>
                   }
