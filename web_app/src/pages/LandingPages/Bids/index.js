@@ -1,4 +1,3 @@
-import { useTimer } from 'react-timer-hook';
 import { useEffect,useState } from "react";
 import Grid from "@mui/material/Grid";
 import React from 'react';
@@ -35,6 +34,7 @@ function BidsPage()  {
     bgImage:"",
   });
 
+
   const columns = [
     {
         name: 'User',
@@ -43,16 +43,43 @@ function BidsPage()  {
     {
         name: 'Price($)',
         selector: row => row.bid_price,
+        sortable: true,
+
     },
   ];
 
+  const Completionist = () => {
+    let h_bid
+    let h_user
+    Math.max.apply(Math, userRequest.data.map(function(o) {
+      h_bid = o.bid_price; 
+      h_user = o.bid_username
+    }))
+    console.log(h_bid)
+    console.log(h_user)
+    return(
+      <span>ok</span>
+    )
+  }
+
+
+  const renderer = ({ minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a completed state
+      return <Completionist />;
+    } else {
+      // Render a countdown
+      return <span>{minutes}:{seconds}</span>;
+    }
+  };
+  
   useEffect(async() =>{
     const db = getFirestore();
     const docRef = doc(db, "Cards", params.id);
     const docSnap = await getDoc(docRef);
     
     let arr = []
-    let arr2 =[]
+    let arr2 = []
     let loading
     let timer
     let image
@@ -173,7 +200,12 @@ function BidsPage()  {
                 </MKTypography>
                 <div>
                 {userRequest.timer
-                    ? <div>timer</div>
+                    ? <div>
+                      <Countdown
+                          date={Date.now() + 5000}
+                          renderer={renderer}
+                        />
+                    </div>
                     : <div>No Data</div>
                   }
                 </div>
@@ -184,6 +216,7 @@ function BidsPage()  {
                     ? <DataTable
                     columns={columns}
                     data={userRequest.data}
+                    defaultSortFieldId={1}
                 />
                     : <div>No Data</div>
                   }
@@ -204,7 +237,6 @@ function BidsPage()  {
                           </button>
                           <div className="header"> Place Bid</div>
                           <div className="content">
-                          
                           <MKBox component="form" role="form" onSubmit={handleBid}>
                           <MKBox mb={3}>
                             <MKInput name="bidprice" type="price" label="Price" fullWidth onChange={(e) => setBidPrice(e.target.value)}/>
