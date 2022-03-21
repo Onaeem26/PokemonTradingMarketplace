@@ -1,3 +1,4 @@
+import { useTimer } from 'react-timer-hook';
 import { useEffect,useState } from "react";
 import Grid from "@mui/material/Grid";
 import React from 'react';
@@ -19,6 +20,23 @@ import './modal.css'
 
 import DataTable from 'react-data-table-component';
 
+function MyTimer({ expiryTimestamp }) {
+  const {
+    seconds,
+    minutes,
+    hours,
+    days,
+    isRunning,
+  } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
+
+
+  return (
+      <div style={{color:'red'}}>
+        <span>{minutes}</span>:<span>{seconds}</span>
+      </div>
+  );
+}
+
 function BidsPage()  {
   const params = useParams();
   const {user} = useUserAuth();
@@ -28,7 +46,9 @@ function BidsPage()  {
   const [bgImage,setbgImage]  = useState("")
   const[data,setData]  = useState([])
   const [error, setError] = useState("");
+  const[timer,setTimer]= useState(false)
 
+  const time = new Date();
 
   const columns = [
     {
@@ -40,7 +60,6 @@ function BidsPage()  {
         selector: row => row.bid_price,
     },
   ];
-
 
   useEffect(async() =>{
     const db = getFirestore();
@@ -85,13 +104,16 @@ function BidsPage()  {
           card_id: params.id,
           user_price: [{user_uid:user.uid,user_email:user.email,price:bidprice}],
           status: true,
-          duration: 10,
+          duration: 24,
         },{ capital: true }, { merge: true });
+        time.setSeconds(time.getSeconds() + 30);
+        setTimer(true)
         setbidExists(true)
       } catch (err) {
         setError(err.message);
       }
     }
+    
     else{
       try {
         //get doc
@@ -104,11 +126,11 @@ function BidsPage()  {
         setError(err.message);
       }
     }
-    
   };
 
   if(!isLoading){
     return (
+     
         <Grid container spacing={0.5} alignItems="center">
           <Grid item xs={12} lg={6}>
             <MKBox
@@ -154,6 +176,14 @@ function BidsPage()  {
                 <MKTypography variant="h3" color="white">
                   Bids
                 </MKTypography>
+                <div>
+                {timer
+                    ? <MyTimer expiryTimestamp={time} />
+                    : <div>No Data</div>
+                  }
+                </div>
+                
+
               </MKBox>
               <MKBox p={3}>
                 <div>
@@ -181,6 +211,7 @@ function BidsPage()  {
                           </button>
                           <div className="header"> Place Bid</div>
                           <div className="content">
+                          
                           <MKBox component="form" role="form" onSubmit={handleBid}>
                           <MKBox mb={3}>
                             <MKInput name="bidprice" type="price" label="Price" fullWidth onChange={(e) => setBidPrice(e.target.value)}/>
