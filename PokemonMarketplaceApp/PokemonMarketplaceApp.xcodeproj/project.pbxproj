@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F523947427E6611800CEA124 /* UserBidModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523947327E6611800CEA124 /* UserBidModel.swift */; };
+		F523947627E666CF00CEA124 /* CurrentBidModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523947527E666CF00CEA124 /* CurrentBidModel.swift */; };
+		F523947827E6680D00CEA124 /* CurrentCardBidFetchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523947727E6680D00CEA124 /* CurrentCardBidFetchProtocol.swift */; };
+		F523947A27E6690500CEA124 /* CurrentCardBidFetchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523947927E6690500CEA124 /* CurrentCardBidFetchManager.swift */; };
+		F523947C27E6707A00CEA124 /* CurrentBidViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523947B27E6707A00CEA124 /* CurrentBidViewModel.swift */; };
+		F523948027E6795E00CEA124 /* MainBidVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523947F27E6795E00CEA124 /* MainBidVModel.swift */; };
 		F58591AC27C5BD2800DC7B62 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58591AB27C5BD2800DC7B62 /* CardView.swift */; };
 		F58591AF27C5ED7000DC7B62 /* PokemonCardsFeedNetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58591AE27C5ED7000DC7B62 /* PokemonCardsFeedNetworkProtocol.swift */; };
 		F58591B127C5EE0D00DC7B62 /* PokemonCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58591B027C5EE0D00DC7B62 /* PokemonCardModel.swift */; };
@@ -50,6 +56,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F523947327E6611800CEA124 /* UserBidModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBidModel.swift; sourceTree = "<group>"; };
+		F523947527E666CF00CEA124 /* CurrentBidModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentBidModel.swift; sourceTree = "<group>"; };
+		F523947727E6680D00CEA124 /* CurrentCardBidFetchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCardBidFetchProtocol.swift; sourceTree = "<group>"; };
+		F523947927E6690500CEA124 /* CurrentCardBidFetchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCardBidFetchManager.swift; sourceTree = "<group>"; };
+		F523947B27E6707A00CEA124 /* CurrentBidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentBidViewModel.swift; sourceTree = "<group>"; };
+		F523947F27E6795E00CEA124 /* MainBidVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBidVModel.swift; sourceTree = "<group>"; };
 		F58591AB27C5BD2800DC7B62 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F58591AE27C5ED7000DC7B62 /* PokemonCardsFeedNetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCardsFeedNetworkProtocol.swift; sourceTree = "<group>"; };
 		F58591B027C5EE0D00DC7B62 /* PokemonCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCardModel.swift; sourceTree = "<group>"; };
@@ -107,6 +119,8 @@
 			children = (
 				F58591AE27C5ED7000DC7B62 /* PokemonCardsFeedNetworkProtocol.swift */,
 				F58591B227C5F07000DC7B62 /* PokemonCardsFeedNetworkManager.swift */,
+				F523947727E6680D00CEA124 /* CurrentCardBidFetchProtocol.swift */,
+				F523947927E6690500CEA124 /* CurrentCardBidFetchManager.swift */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";
@@ -115,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				F58591B427C5F23F00DC7B62 /* PokemonCardsFeedViewModel.swift */,
+				F523947B27E6707A00CEA124 /* CurrentBidViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -188,6 +203,9 @@
 			children = (
 				F5F235C3279D858B00697411 /* UserDataModel.swift */,
 				F58591B027C5EE0D00DC7B62 /* PokemonCardModel.swift */,
+				F523947327E6611800CEA124 /* UserBidModel.swift */,
+				F523947527E666CF00CEA124 /* CurrentBidModel.swift */,
+				F523947F27E6795E00CEA124 /* MainBidVModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -318,15 +336,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F523947427E6611800CEA124 /* UserBidModel.swift in Sources */,
 				F5F76EC127BF279E00AE7AAC /* AccountView.swift in Sources */,
+				F523947C27E6707A00CEA124 /* CurrentBidViewModel.swift in Sources */,
 				F599EE47279AB09E0006019B /* AppDelegate.swift in Sources */,
 				F599EE4C279AB4480006019B /* RegisterView.swift in Sources */,
 				F58591BA27C88E2C00DC7B62 /* PostBidView.swift in Sources */,
 				F5F6268027A00CDD009DBABB /* UserFlowModeratorView.swift in Sources */,
 				F5F76EBD27BF263600AE7AAC /* HomeView.swift in Sources */,
 				F5F235C4279D858B00697411 /* UserDataModel.swift in Sources */,
+				F523947827E6680D00CEA124 /* CurrentCardBidFetchProtocol.swift in Sources */,
 				F599EE2C279AAEE00006019B /* ContentView.swift in Sources */,
 				F58591B827C73F3E00DC7B62 /* DetailCardView.swift in Sources */,
+				F523947627E666CF00CEA124 /* CurrentBidModel.swift in Sources */,
+				F523947A27E6690500CEA124 /* CurrentCardBidFetchManager.swift in Sources */,
+				F523948027E6795E00CEA124 /* MainBidVModel.swift in Sources */,
 				F58591AC27C5BD2800DC7B62 /* CardView.swift in Sources */,
 				F5F76EBF27BF26DF00AE7AAC /* FeedView.swift in Sources */,
 				F599EE4E279AB4530006019B /* LoginView.swift in Sources */,

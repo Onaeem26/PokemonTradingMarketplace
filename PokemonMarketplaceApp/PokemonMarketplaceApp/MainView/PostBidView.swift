@@ -6,10 +6,18 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseFirestore
 
 struct PostBidView: View {
     @State var bidPrice: String = ""
     @FocusState private var fieldFocus: Bool
+    @Environment(\.presentationMode) var presentationMode
+    
+    var card: PokemonCardModel
+
+    
+    var db = Firestore.firestore()
     var body: some View {
         NavigationView {
             ZStack {
@@ -28,6 +36,9 @@ struct PostBidView: View {
                     
                     Button {
                         print("Post Bid")
+                        //Do something here
+                        self.uploadBid()
+                        self.presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("Post Bid")
                             .frame(maxWidth: .infinity)
@@ -39,22 +50,41 @@ struct PostBidView: View {
 
                 }.padding(.top)
             }.onAppear {
-                print("Hello")
                 self.fieldFocus = true
             }.navigationTitle("Enter your Bid")
                 .toolbar {
                     Button {
                         print("Dismiss View")
+                        self.presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("Cancel")
                     }
                 }
         }
     }
-}
-
-struct PostBidView_Previews: PreviewProvider {
-    static var previews: some View {
-        PostBidView()
+    
+    func uploadBid() {
+        do {
+            let userid = Auth.auth().currentUser?.uid
+            let cardID = card.cardID
+            let bidUUID = UUID().uuidString
+            let bid = UserBidModel(bidUUID: bidUUID, cardID: cardID, price: Float(bidPrice), userID: userid, bidTime: Date())
+            let _ = try db.collection("UserBids").document(bidUUID).setData(from: bid)
+            
+            CurrentCardBidFetchManager().updateCurrentBidStatusModel(cardID: cardID!) { CurrentBidModel in
+                print("HALLO")
+                print(CurrentBidModel[0].BidID)
+            }
+        }catch {
+            print(error)
+        }
+        
+        
     }
 }
+
+//struct PostBidView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PostBidView()
+//    }
+//}

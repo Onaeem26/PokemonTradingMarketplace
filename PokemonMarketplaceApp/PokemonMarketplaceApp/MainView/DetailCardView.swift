@@ -10,6 +10,8 @@ import SwiftUI
 struct DetailCardView: View {
     var card: PokemonCardModel
     @State var presentBidPostView: Bool = false
+    @ObservedObject var bidViewModel: CurrentBidViewModel
+    
     var body: some View {
         ZStack {
         
@@ -46,7 +48,7 @@ struct DetailCardView: View {
                         
                         HStack {
                             VStack(alignment: .leading) {
-                                Text("$45")
+                                Text(String(bidViewModel.currentBid.price ?? 0))
                                     .font(.title)
                                 Text("Current Bid")
                                     .font(.caption)
@@ -55,7 +57,7 @@ struct DetailCardView: View {
                             Divider()
                             
                             VStack(alignment: .leading) {
-                                Text("Osama")
+                                Text(bidViewModel.currentBid.currentBidderName ?? "")
                                     .font(.title2)
                                 Text("Current Bidder")
                                     .font(.caption)
@@ -80,7 +82,7 @@ struct DetailCardView: View {
                                 .background(Color.green)
                                 .cornerRadius(5)
                                 .padding(.top, 12)
-                                .padding(.bottom,12)
+                                .padding(.bottom,8)
                         }
                         Text("Floor Bid is ").font(.footnote) + Text("$5").bold().font(.footnote)
                             
@@ -106,7 +108,7 @@ struct DetailCardView: View {
                             Spacer()
                             Text("PokemonTradingInc")
                         }.padding(.horizontal)
-                            .padding(.top, 6)
+                        .padding(.top, 12)
                     }
                     .padding(.bottom)
                     Spacer()
@@ -116,11 +118,15 @@ struct DetailCardView: View {
                 }.padding(.top)
             }
             .sheet(isPresented: $presentBidPostView) {
-                    PostBidView()
+                    PostBidView(card: card)
                 }
         }.navigationTitle(card.name ?? "")
         .navigationBarTitleDisplayMode(.inline)
-        
+        .onAppear {
+            print("HALLO")
+            print("Card id: \(self.card.cardID!)")
+            bidViewModel.fetchCurrentBid(cardID: self.card.cardID!)
+        }
     }
 }
 

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CardView: View {
     var cardItem: PokemonCardModel
+    @StateObject var currentBid = CurrentBidViewModel()
     var body: some View {
       //  GeometryReader { geo in
         ZStack {
@@ -46,7 +47,7 @@ struct CardView: View {
                     
                     HStack {
                         
-                        NavigationLink(destination: DetailCardView(card: cardItem)) {
+                        NavigationLink(destination: DetailCardView(card: cardItem, bidViewModel: self.currentBid)) {
                             Text("Bid Now")
                         }.padding(10)
                         .background(.blue)

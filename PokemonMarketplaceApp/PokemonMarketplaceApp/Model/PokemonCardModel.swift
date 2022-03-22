@@ -14,6 +14,7 @@ public struct PokemonCardModel: Codable {
     var hp: String?
     var images: Images?
     var artst: String?
+    @DocumentID var cardID: String?
     
     enum CodingKeys: String, CodingKey {
             case id
@@ -21,6 +22,7 @@ public struct PokemonCardModel: Codable {
             case hp
             case images
             case artst
+            case cardID
         }
   
 }
