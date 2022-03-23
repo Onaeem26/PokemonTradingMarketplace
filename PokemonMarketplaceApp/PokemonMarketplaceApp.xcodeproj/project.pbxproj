@@ -37,6 +37,7 @@
 		F599EE4E279AB4530006019B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599EE4D279AB4530006019B /* LoginView.swift */; };
 		F599EE56279AB6340006019B /* ValidationServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599EE55279AB6340006019B /* ValidationServicesTests.swift */; };
 		F599EE5D279AB9020006019B /* ValidationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599EE5C279AB9020006019B /* ValidationServices.swift */; };
+		F5C67DA027EBCEF9008671A6 /* PokemonCardVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C67D9F27EBCEF9008671A6 /* PokemonCardVModel.swift */; };
 		F5F235C4279D858B00697411 /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F235C3279D858B00697411 /* UserDataModel.swift */; };
 		F5F235C6279D85FB00697411 /* UserDataCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F235C5279D85FB00697411 /* UserDataCreationView.swift */; };
 		F5F6268027A00CDD009DBABB /* UserFlowModeratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F6267F27A00CDD009DBABB /* UserFlowModeratorView.swift */; };
@@ -81,6 +82,7 @@
 		F599EE53279AB6340006019B /* PokemonMarketplaceAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokemonMarketplaceAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F599EE55279AB6340006019B /* ValidationServicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationServicesTests.swift; sourceTree = "<group>"; };
 		F599EE5C279AB9020006019B /* ValidationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationServices.swift; sourceTree = "<group>"; };
+		F5C67D9F27EBCEF9008671A6 /* PokemonCardVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCardVModel.swift; sourceTree = "<group>"; };
 		F5F235C3279D858B00697411 /* UserDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
 		F5F235C5279D85FB00697411 /* UserDataCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataCreationView.swift; sourceTree = "<group>"; };
 		F5F6267F27A00CDD009DBABB /* UserFlowModeratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFlowModeratorView.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				F523947327E6611800CEA124 /* UserBidModel.swift */,
 				F523947527E666CF00CEA124 /* CurrentBidModel.swift */,
 				F523947F27E6795E00CEA124 /* MainBidVModel.swift */,
+				F5C67D9F27EBCEF9008671A6 /* PokemonCardVModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				F599EE4E279AB4530006019B /* LoginView.swift in Sources */,
 				F58591AF27C5ED7000DC7B62 /* PokemonCardsFeedNetworkProtocol.swift in Sources */,
 				F58591B127C5EE0D00DC7B62 /* PokemonCardModel.swift in Sources */,
+				F5C67DA027EBCEF9008671A6 /* PokemonCardVModel.swift in Sources */,
 				F599EE5D279AB9020006019B /* ValidationServices.swift in Sources */,
 				F58591B527C5F23F00DC7B62 /* PokemonCardsFeedViewModel.swift in Sources */,
 				F5F235C6279D85FB00697411 /* UserDataCreationView.swift in Sources */,

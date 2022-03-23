@@ -85,18 +85,7 @@ struct DetailCardView: View {
                                 .padding(.top, 12)
                                 .padding(.bottom,8)
                         }
-                        
-                        Button {
-                            bidViewModel.fetchCurrentBid(cardID: self.card.cardID!)
-                        } label: {
-                            Text("Refresh Now")
-                                .padding()
-                                .foregroundColor(.white)
-                                .background(Color.green)
-                                .cornerRadius(5)
-                                .padding(.top, 12)
-                                .padding(.bottom,8)
-                        }
+                  
                         Text("Floor Bid is ").font(.footnote) + Text("$5").bold().font(.footnote)
                             
                     }
@@ -132,7 +121,6 @@ struct DetailCardView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
                     bidViewModel.fetchCurrentBid(cardID: self.card.cardID!)
                 })
-                print(bidViewModel.currentBid)
             }) {
                 PostBidView(card: card)
                 }
@@ -140,8 +128,22 @@ struct DetailCardView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             bidViewModel.fetchCurrentBid(cardID: self.card.cardID!)
+            print(bidViewModel.currentBid.timeStarted)
+            print(self.timeRemainingCalculations(bidStartDate: self.bidViewModel.currentBid.timeStarted ?? Date()))
         }
         
+    }
+    
+    func timeRemainingCalculations(bidStartDate: Date) -> String {
+        let bidDuration = 24 //24 hours)
+        let calendar = NSCalendar.current
+        let bidEndDate = calendar.date(byAdding: .hour, value: bidDuration, to: bidStartDate)
+        
+        print(bidEndDate)
+        
+        
+        
+        return "Ewe"
     }
 }
 

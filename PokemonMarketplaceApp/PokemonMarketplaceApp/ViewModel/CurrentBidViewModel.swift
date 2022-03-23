@@ -14,8 +14,11 @@ class CurrentBidViewModel: ObservableObject {
 //    
     func fetchCurrentBid(cardID: String) {
         CurrentCardBidFetchManager().createCurrentBidViewModel(cardID: cardID) { bid in
-            self.currentBid = bid
+            DispatchQueue.main.async {
+                self.currentBid = bid
+            }
         }
+            
     }
 }
 

@@ -13,6 +13,7 @@ class PokemonCardsFeedViewModel: ObservableObject {
     
     func fetchCards() {
         PokemonCardsFeedNetworkManager().fetchPokemonCardsForFeed { [weak self] cards in
+            print(cards.count)
             DispatchQueue.main.async {
                 self?.pokemonCards = cards
             }

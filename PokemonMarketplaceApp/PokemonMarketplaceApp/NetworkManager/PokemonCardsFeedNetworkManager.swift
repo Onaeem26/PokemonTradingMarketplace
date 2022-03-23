@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 class PokemonCardsFeedNetworkManager: PokemonCardsFeedNetworkProtocol {
     private let db = Firestore.firestore()
+    
     func fetchPokemonCardsForFeed(completion: @escaping ([PokemonCardModel]) -> ()) {
         db.collection("Cards").getDocuments { (query, error) in
             guard let documents = query?.documents else {
@@ -25,4 +26,6 @@ class PokemonCardsFeedNetworkManager: PokemonCardsFeedNetworkProtocol {
             completion(fetchedCards)
         }
     }
+    
+    
 }
