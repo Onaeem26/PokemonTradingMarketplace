@@ -48,7 +48,8 @@ struct DetailCardView: View {
                         
                         HStack {
                             VStack(alignment: .leading) {
-                                Text(String(bidViewModel.currentBid.price ?? 0))
+                                Text(bidViewModel.currentBid.price ?? 0, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                               // Text(String(bidViewModel.currentBid.price ?? 0))
                                     .font(.title)
                                 Text("Current Bid")
                                     .font(.caption)
@@ -57,7 +58,7 @@ struct DetailCardView: View {
                             Divider()
                             
                             VStack(alignment: .leading) {
-                                Text(bidViewModel.currentBid.currentBidderName ?? "")
+                                Text(bidViewModel.currentBid.currentBidderName ?? "No Bidder")
                                     .font(.title2)
                                 Text("Current Bidder")
                                     .font(.caption)
@@ -84,6 +85,18 @@ struct DetailCardView: View {
                                 .padding(.top, 12)
                                 .padding(.bottom,8)
                         }
+                        
+                        Button {
+                            bidViewModel.fetchCurrentBid(cardID: self.card.cardID!)
+                        } label: {
+                            Text("Refresh Now")
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color.green)
+                                .cornerRadius(5)
+                                .padding(.top, 12)
+                                .padding(.bottom,8)
+                        }
                         Text("Floor Bid is ").font(.footnote) + Text("$5").bold().font(.footnote)
                             
                     }
@@ -97,6 +110,7 @@ struct DetailCardView: View {
                             Text("Time Remaining ")
                                 .bold()
                             Spacer()
+                           // Text(bidViewModel.currentBid.timeStarted)
                             Text("6").bold() + Text(" days ") + Text("14").bold() + Text(" hours")
                         }.padding(.horizontal)
                         
@@ -112,21 +126,22 @@ struct DetailCardView: View {
                     }
                     .padding(.bottom)
                     Spacer()
-                    
-                    
-                
                 }.padding(.top)
             }
-            .sheet(isPresented: $presentBidPostView) {
-                    PostBidView(card: card)
+            .sheet(isPresented: $presentBidPostView, onDismiss: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+                    bidViewModel.fetchCurrentBid(cardID: self.card.cardID!)
+                })
+                print(bidViewModel.currentBid)
+            }) {
+                PostBidView(card: card)
                 }
         }.navigationTitle(card.name ?? "")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            print("HALLO")
-            print("Card id: \(self.card.cardID!)")
             bidViewModel.fetchCurrentBid(cardID: self.card.cardID!)
         }
+        
     }
 }
 

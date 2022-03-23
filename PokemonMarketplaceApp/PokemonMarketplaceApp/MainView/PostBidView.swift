@@ -13,7 +13,6 @@ struct PostBidView: View {
     @State var bidPrice: String = ""
     @FocusState private var fieldFocus: Bool
     @Environment(\.presentationMode) var presentationMode
-    
     var card: PokemonCardModel
 
     
