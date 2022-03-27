@@ -131,6 +131,7 @@ class CurrentCardBidFetchManager: CurrentCardBidProtocol {
     func createCurrentBidViewModel(cardID: String, completion: @escaping (MainBidVModel) -> ()) {
         self.fetchCurrentBid(cardID: cardID) { currentBid in
             print("Current Bid:", currentBid.BidID)
+            print("Current bid start time", currentBid.timeStarted)
             self.fetchBidObject(bidID: currentBid.BidID!) { bid in
                 print("Bid :", bid.price)
                 self.fetchUserObject(userID: bid.userID!) { user in
@@ -143,4 +144,17 @@ class CurrentCardBidFetchManager: CurrentCardBidProtocol {
         }
     }
     
+    func updateBidStatus(cardID: String) {
+        self.db.collection("CurrentBid").whereField("cardID", isEqualTo: cardID)
+                .getDocuments(completion: { query, err in
+                    if let err = err {
+                        print("Error getting docs: \(err)")
+                    }else {
+                        for doc in query!.documents {
+                            self.db.collection("CurrentBid").document(doc.documentID).updateData(["status" : false])
+                        }
+                        
+                    }
+        })
+    }
 }

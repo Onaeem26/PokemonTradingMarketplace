@@ -11,6 +11,7 @@ struct DetailCardView: View {
     var card: PokemonCardModel
     @State var presentBidPostView: Bool = false
     @ObservedObject var bidViewModel: CurrentBidViewModel
+    @State var timeRemainingString: String = ""
     
     var body: some View {
         ZStack {
@@ -51,7 +52,7 @@ struct DetailCardView: View {
                                 Text(bidViewModel.currentBid.price ?? 0, format: .currency(code: Locale.current.currencyCode ?? "USD"))
                                // Text(String(bidViewModel.currentBid.price ?? 0))
                                     .font(.title)
-                                Text("Current Bid")
+                                Text((bidViewModel.currentBid.status ?? true) ? "Current Bid" : "Winning Bid")
                                     .font(.caption)
                             }.frame(maxWidth: .infinity)
                             
@@ -60,7 +61,7 @@ struct DetailCardView: View {
                             VStack(alignment: .leading) {
                                 Text(bidViewModel.currentBid.currentBidderName ?? "No Bidder")
                                     .font(.title2)
-                                Text("Current Bidder")
+                                Text((bidViewModel.currentBid.status ?? true) ? "Current Bidder" : "Winner")
                                     .font(.caption)
                             }.frame(maxWidth: .infinity)
                         
@@ -77,14 +78,15 @@ struct DetailCardView: View {
                         Button {
                             self.presentBidPostView = true
                         } label: {
-                            Text("Bid Now")
+                            Text((bidViewModel.currentBid.status ?? true) ? "Bid Now" : "Closed")
                                 .padding()
                                 .foregroundColor(.white)
-                                .background(Color.green)
+                                .background((bidViewModel.currentBid.status ?? true) ? Color.green : .red)
                                 .cornerRadius(5)
                                 .padding(.top, 12)
                                 .padding(.bottom,8)
-                        }
+                                
+                        }.disabled(!(bidViewModel.currentBid.status ?? true))
                   
                         Text("Floor Bid is ").font(.footnote) + Text("$5").bold().font(.footnote)
                             
@@ -95,12 +97,12 @@ struct DetailCardView: View {
                         HStack {
                             Circle()
                                 .frame(width: 20, height: 20)
-                                .foregroundColor(.green)
-                            Text("Time Remaining ")
+                                .foregroundColor((bidViewModel.currentBid.status ?? true) ? .green : .red)
+                            Text("Time Remaining")
                                 .bold()
                             Spacer()
                            // Text(bidViewModel.currentBid.timeStarted)
-                            Text("6").bold() + Text(" days ") + Text("14").bold() + Text(" hours")
+                            Text((bidViewModel.currentBid.status ?? true) ? timeRemainingString : "Bid Closed")
                         }.padding(.horizontal)
                         
                         
@@ -128,22 +130,43 @@ struct DetailCardView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             bidViewModel.fetchCurrentBid(cardID: self.card.cardID!)
-            print(bidViewModel.currentBid.timeStarted)
-            print(self.timeRemainingCalculations(bidStartDate: self.bidViewModel.currentBid.timeStarted ?? Date()))
+    
+            
+           //
+        }.onChange(of: self.bidViewModel.currentBid.timeStarted) { b in
+            print("Bid Start time", bidViewModel.currentBid.timeStarted)
+           // print(self.timeRemainingCalculations(bidStartDate: self.bidViewModel.currentBid.timeStarted))
+            timeRemainingString = self.timeRemainingCalculations(bidStartDate: self.bidViewModel.currentBid.timeStarted)
         }
         
     }
     
-    func timeRemainingCalculations(bidStartDate: Date) -> String {
+    func timeRemainingCalculations(bidStartDate: Date?) -> String {
         let bidDuration = 24 //24 hours)
         let calendar = NSCalendar.current
-        let bidEndDate = calendar.date(byAdding: .hour, value: bidDuration, to: bidStartDate)
-        
-        print(bidEndDate)
+        let bidEndDate = calendar.date(byAdding: .hour, value: bidDuration, to: bidStartDate ?? Date())
         
         
+        guard let bidEndDateStrong = bidEndDate else {
+            return ""
+        }
+        guard let bidStartDateStrong = bidStartDate else {
+            return ""
+        }
         
-        return "Ewe"
+        print("Bid End Date:", bidEndDateStrong)
+        let diffComponents = Calendar.current.dateComponents([.hour, .minute], from: Date(), to: bidEndDateStrong)
+        let hours = diffComponents.hour
+        let minutes = diffComponents.minute
+       
+        guard let hours = hours else { return ""}
+        guard let minutes = minutes else { return ""}
+        if (hours < 0 || minutes < 0) {
+            CurrentCardBidFetchManager().updateBidStatus(cardID: card.cardID!)
+            return "Bid Closed"
+        }
+        
+         return "\(hours) hrs : \(minutes) mins"
     }
 }
 
