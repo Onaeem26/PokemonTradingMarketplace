@@ -7,12 +7,9 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-//public struct PokemonCardVModel: Codable {
-//    var id = UUID()
-//    var cardID: String?
-//    var artist: String?
-//    var name: String?
-//    var price: Float?
-//    var imagesURL: String?
-//}
+public struct PokemonCardVModel: Codable {
+    var id = UUID()
+    var pokemonCardDetail: PokemonCardModel
+    var price: Float?
+}
 

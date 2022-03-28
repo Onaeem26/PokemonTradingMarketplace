@@ -13,7 +13,7 @@ struct FeedView: View {
         NavigationView {
             ScrollView {
                 ForEach(viewModel.pokemonCards, id: \.id) { item in
-                        CardView(cardItem: item)
+                    CardView(cardItem: item)
                 }
             }.navigationTitle("Feed")
             .toolbar {
@@ -23,9 +23,9 @@ struct FeedView: View {
                     Image(systemName: "plus")
                 }
 
+            }.onAppear {
+                viewModel.fetchCards()
             }
-        }.onAppear {
-            viewModel.fetchCards()
         }
     }
 }

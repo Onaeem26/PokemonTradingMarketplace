@@ -9,13 +9,14 @@ import Foundation
 import Combine
 
 class PokemonCardsFeedViewModel: ObservableObject {
-    @Published var pokemonCards = [PokemonCardModel]()
+    @Published var pokemonCards = [PokemonCardVModel]()
     
     func fetchCards() {
-        PokemonCardsFeedNetworkManager().fetchPokemonCardsForFeed { [weak self] cards in
+        PokemonCardsFeedNetworkManager().fetchPokemonCardsVForFeed{ [weak self] cards in
             print(cards.count)
             DispatchQueue.main.async {
-                self?.pokemonCards = cards
+                let sortedCards = cards.sorted(by: { $0.price ?? 0 > $1.price ?? 0 })
+                self?.pokemonCards = sortedCards
             }
         }
     }

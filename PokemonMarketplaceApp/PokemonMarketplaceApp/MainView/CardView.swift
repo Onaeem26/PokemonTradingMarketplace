@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardView: View {
-    var cardItem: PokemonCardModel
+    var cardItem: PokemonCardVModel
     @StateObject var currentBid = CurrentBidViewModel()
     var body: some View {
       //  GeometryReader { geo in
@@ -18,7 +18,7 @@ struct CardView: View {
                 HStack(alignment: .top, spacing: 8) {
                     
                 AsyncImage(
-                    url: URL(string: cardItem.images?.small ?? ""),
+                    url: URL(string: cardItem.pokemonCardDetail.images?.small ?? ""),
                        content: { image in
                            image.resizable()
                             .aspectRatio(contentMode: .fit)
@@ -34,12 +34,11 @@ struct CardView: View {
                     
                     
                 VStack(alignment: .leading) {
-                    Text(cardItem.name ?? "")
+                    Text(cardItem.pokemonCardDetail.name ?? "")
                         .lineLimit(2)
                         .font(.title3)
                         .foregroundColor(.black)
-                    
-                    Text("No Bid")
+                    Text(cardItem.price ?? 0, format: .currency(code: Locale.current.currencyCode ?? "USD"))
                         .font(.title3)
                         .padding(.top)
                         .foregroundColor(.black)
@@ -47,8 +46,8 @@ struct CardView: View {
                     
                     HStack {
                         
-                        NavigationLink(destination: DetailCardView(card: cardItem, bidViewModel: self.currentBid)) {
-                            Text("Bid Now")
+                        NavigationLink(destination: DetailCardView(card: cardItem.pokemonCardDetail, bidViewModel: self.currentBid)) {
+                            Text("View More")
                         }.padding(10)
                         .background(.blue)
                         .cornerRadius(5)

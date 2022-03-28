@@ -36,8 +36,16 @@ struct PostBidView: View {
                     Button {
                         print("Post Bid")
                         //Do something here
-                        self.uploadBid()
-                        self.presentationMode.wrappedValue.dismiss()
+                        self.checkHighestBid(cardID: card.cardID ?? "") { val in
+                            if (Float(bidPrice) ?? 0 >= val && Float(bidPrice) ?? 0 >= 5) {
+                                self.uploadBid()
+                                self.presentationMode.wrappedValue.dismiss()
+                            }else {
+                                print("not noice")
+                                print("Value should be higher")
+                            }
+                        }
+                        
                     } label: {
                         Text("Post Bid")
                             .frame(maxWidth: .infinity)
@@ -59,6 +67,17 @@ struct PostBidView: View {
                         Text("Cancel")
                     }
                 }
+        }
+    }
+    func checkHighestBid(cardID: String, completion: @escaping (Float) -> ()) {
+        CurrentCardBidFetchManager().fetchCurrentHighestBid(cardID: card.cardID!) { bid in
+            if bid.count == 1 {
+                let highestBid = bid[0]
+                let highestPrice = highestBid.price
+                completion(highestPrice ?? 5.0)
+            }else {
+                completion(0.0)
+            }
         }
     }
     

@@ -8,5 +8,6 @@
 import Foundation
 protocol PokemonCardsFeedNetworkProtocol {
     func fetchPokemonCardsForFeed(completion: @escaping ([PokemonCardModel]) -> ())
+    func fetchPokemonCardsVForFeed(completion: @escaping ([PokemonCardVModel]) -> ())
 }
 
