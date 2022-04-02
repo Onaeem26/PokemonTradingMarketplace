@@ -14,6 +14,7 @@ public struct UserBidModel: Codable {
     var price: Float?
     var userID: String?
     var bidTime: Date?
+   
     
     enum CodingKeys: String, CodingKey {
             case bidUUID

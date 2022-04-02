@@ -102,7 +102,12 @@ struct DetailCardView: View {
                                 .bold()
                             Spacer()
                            // Text(bidViewModel.currentBid.timeStarted)
-                            Text((bidViewModel.currentBid.status ?? true) ? timeRemainingString : "Bid Closed")
+                            if (bidViewModel.currentBid.status == nil) {
+                                Text("Bid Inactive")
+                            }else {
+                                Text((bidViewModel.currentBid.status!) ? timeRemainingString : "Bid Closed")
+                            }
+                            //
                         }.padding(.horizontal)
                         
                         
@@ -134,7 +139,6 @@ struct DetailCardView: View {
             
            //
         }.onChange(of: self.bidViewModel.currentBid.timeStarted) { b in
-            print("Bid Start time", bidViewModel.currentBid.timeStarted)
            // print(self.timeRemainingCalculations(bidStartDate: self.bidViewModel.currentBid.timeStarted))
             timeRemainingString = self.timeRemainingCalculations(bidStartDate: self.bidViewModel.currentBid.timeStarted)
         }
@@ -163,6 +167,7 @@ struct DetailCardView: View {
         guard let minutes = minutes else { return ""}
         if (hours < 0 || minutes < 0) {
             CurrentCardBidFetchManager().updateBidStatus(cardID: card.cardID!)
+            CurrentCardBidFetchManager().updateWinnings(cardID: card.cardID!)
             return "Bid Closed"
         }
         

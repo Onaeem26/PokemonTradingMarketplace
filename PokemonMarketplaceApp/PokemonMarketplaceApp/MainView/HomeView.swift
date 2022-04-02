@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var pokemonCardFeedViewModel = PokemonCardsFeedViewModel()
+    @StateObject var winningviewModel = FetchWinningsViewModel()
+    
     var body: some View {
     
         TabView {
@@ -17,7 +19,7 @@ struct HomeView: View {
                     Label("Feed", systemImage: "list.dash")
                 }
 
-            AccountView()
+            AccountView(viewModel: winningviewModel)
                 .tabItem {
                     Label("Account", systemImage: "square.and.pencil")
                 }

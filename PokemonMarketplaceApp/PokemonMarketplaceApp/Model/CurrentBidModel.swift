@@ -14,6 +14,7 @@ public struct CurrentBidModel: Codable {
     var BidID: String?
     var status: Bool?
     var timeStarted: Date?
+    var endStarted:Date?
     
     
     
@@ -23,6 +24,7 @@ public struct CurrentBidModel: Codable {
             case BidID
             case status
             case timeStarted
+            case endStarted
         }
   
 }

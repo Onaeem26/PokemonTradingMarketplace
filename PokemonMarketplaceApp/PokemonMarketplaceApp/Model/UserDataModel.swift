@@ -13,12 +13,14 @@ public struct UserDataModel: Codable {
     var fullName: String?
     var email: String?
     var phoneNumber: String?
+    var wallet: [String]?
     
     enum CodingKeys: String, CodingKey {
             case id
             case fullName
             case email
             case phoneNumber
+            case wallet
         }
   
 }

@@ -14,6 +14,7 @@ struct PostBidView: View {
     @FocusState private var fieldFocus: Bool
     @Environment(\.presentationMode) var presentationMode
     var card: PokemonCardModel
+    @State var showErrorMsg: Bool = false
 
     
     var db = Firestore.firestore()
@@ -31,6 +32,11 @@ struct PostBidView: View {
                         
                     }.padding()
                     
+                    if (showErrorMsg) {
+                        Text("Bid should be higher than previous bid and more than $5")
+                            .foregroundColor(.red)
+                    }
+                    
                 Spacer()
                     
                     Button {
@@ -43,6 +49,7 @@ struct PostBidView: View {
                             }else {
                                 print("not noice")
                                 print("Value should be higher")
+                                self.showErrorMsg = true
                             }
                         }
                         

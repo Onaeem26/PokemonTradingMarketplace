@@ -27,6 +27,19 @@ class PokemonCardsFeedNetworkManager: PokemonCardsFeedNetworkProtocol {
         }
     }
     
+    func fetchPokemonCard(cardID: String, completion: @escaping (PokemonCardModel) -> ()) {
+        db.collection("Cards").document(cardID).getDocument { (document, error) in
+            if let document = document, document.exists {
+                if let card = try? document.data(as: PokemonCardModel.self) {
+                    print("CardID", card.cardID)
+                    completion(card)
+                }
+            } else {
+                    print("Document does not exist")
+                }
+        }
+    }
+    
     func fetchPokemonCardsVForFeed(completion: @escaping ([PokemonCardVModel]) -> ()) {
         db.collection("Cards").getDocuments { (query, error) in
             guard let documents = query?.documents else {

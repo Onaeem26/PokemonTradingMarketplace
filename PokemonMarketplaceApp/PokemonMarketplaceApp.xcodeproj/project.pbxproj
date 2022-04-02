@@ -7,12 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F512BF8D27F7B36800C0E0BB /* CardWinningModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BF8C27F7B36800C0E0BB /* CardWinningModel.swift */; };
+		F512BF8F27F7B90000C0E0BB /* FetchWinningsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BF8E27F7B90000C0E0BB /* FetchWinningsViewModel.swift */; };
+		F512BF9127F8029B00C0E0BB /* DateTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BF9027F8029B00C0E0BB /* DateTesting.swift */; };
+		F512BF9327F806E300C0E0BB /* DateValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BF9227F806E300C0E0BB /* DateValidationService.swift */; };
 		F523947427E6611800CEA124 /* UserBidModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523947327E6611800CEA124 /* UserBidModel.swift */; };
 		F523947627E666CF00CEA124 /* CurrentBidModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523947527E666CF00CEA124 /* CurrentBidModel.swift */; };
 		F523947827E6680D00CEA124 /* CurrentCardBidFetchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523947727E6680D00CEA124 /* CurrentCardBidFetchProtocol.swift */; };
 		F523947A27E6690500CEA124 /* CurrentCardBidFetchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523947927E6690500CEA124 /* CurrentCardBidFetchManager.swift */; };
 		F523947C27E6707A00CEA124 /* CurrentBidViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523947B27E6707A00CEA124 /* CurrentBidViewModel.swift */; };
 		F523948027E6795E00CEA124 /* MainBidVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523947F27E6795E00CEA124 /* MainBidVModel.swift */; };
+		F565E4E827F2482700AB9D16 /* BidPricingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F565E4E727F2482700AB9D16 /* BidPricingTests.swift */; };
+		F565E4EB27F2494300AB9D16 /* BidValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F565E4EA27F2494300AB9D16 /* BidValidation.swift */; };
 		F58591AC27C5BD2800DC7B62 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58591AB27C5BD2800DC7B62 /* CardView.swift */; };
 		F58591AF27C5ED7000DC7B62 /* PokemonCardsFeedNetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58591AE27C5ED7000DC7B62 /* PokemonCardsFeedNetworkProtocol.swift */; };
 		F58591B127C5EE0D00DC7B62 /* PokemonCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58591B027C5EE0D00DC7B62 /* PokemonCardModel.swift */; };
@@ -57,12 +63,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F512BF8C27F7B36800C0E0BB /* CardWinningModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardWinningModel.swift; sourceTree = "<group>"; };
+		F512BF8E27F7B90000C0E0BB /* FetchWinningsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchWinningsViewModel.swift; sourceTree = "<group>"; };
+		F512BF9027F8029B00C0E0BB /* DateTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTesting.swift; sourceTree = "<group>"; };
+		F512BF9227F806E300C0E0BB /* DateValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValidationService.swift; sourceTree = "<group>"; };
 		F523947327E6611800CEA124 /* UserBidModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBidModel.swift; sourceTree = "<group>"; };
 		F523947527E666CF00CEA124 /* CurrentBidModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentBidModel.swift; sourceTree = "<group>"; };
 		F523947727E6680D00CEA124 /* CurrentCardBidFetchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCardBidFetchProtocol.swift; sourceTree = "<group>"; };
 		F523947927E6690500CEA124 /* CurrentCardBidFetchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCardBidFetchManager.swift; sourceTree = "<group>"; };
 		F523947B27E6707A00CEA124 /* CurrentBidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentBidViewModel.swift; sourceTree = "<group>"; };
 		F523947F27E6795E00CEA124 /* MainBidVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBidVModel.swift; sourceTree = "<group>"; };
+		F565E4E727F2482700AB9D16 /* BidPricingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidPricingTests.swift; sourceTree = "<group>"; };
+		F565E4EA27F2494300AB9D16 /* BidValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidValidation.swift; sourceTree = "<group>"; };
 		F58591AB27C5BD2800DC7B62 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F58591AE27C5ED7000DC7B62 /* PokemonCardsFeedNetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCardsFeedNetworkProtocol.swift; sourceTree = "<group>"; };
 		F58591B027C5EE0D00DC7B62 /* PokemonCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCardModel.swift; sourceTree = "<group>"; };
@@ -116,6 +128,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F565E4E927F2491900AB9D16 /* TestableServices */ = {
+			isa = PBXGroup;
+			children = (
+				F565E4EA27F2494300AB9D16 /* BidValidation.swift */,
+				F512BF9227F806E300C0E0BB /* DateValidationService.swift */,
+			);
+			path = TestableServices;
+			sourceTree = "<group>";
+		};
 		F58591AD27C5ED4400DC7B62 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +153,7 @@
 			children = (
 				F58591B427C5F23F00DC7B62 /* PokemonCardsFeedViewModel.swift */,
 				F523947B27E6707A00CEA124 /* CurrentBidViewModel.swift */,
+				F512BF8E27F7B90000C0E0BB /* FetchWinningsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -163,6 +185,7 @@
 				F5F6267E27A00B12009DBABB /* MainView */,
 				F58591AD27C5ED4400DC7B62 /* NetworkManager */,
 				F58591B627C5F24800DC7B62 /* ViewModel */,
+				F565E4E927F2491900AB9D16 /* TestableServices */,
 				F599EE46279AB09E0006019B /* AppDelegate.swift */,
 				F599EE29279AAEE00006019B /* PokemonMarketplaceAppApp.swift */,
 				F599EE2B279AAEE00006019B /* ContentView.swift */,
@@ -196,6 +219,8 @@
 			isa = PBXGroup;
 			children = (
 				F599EE55279AB6340006019B /* ValidationServicesTests.swift */,
+				F565E4E727F2482700AB9D16 /* BidPricingTests.swift */,
+				F512BF9027F8029B00C0E0BB /* DateTesting.swift */,
 			);
 			path = PokemonMarketplaceAppTests;
 			sourceTree = "<group>";
@@ -209,6 +234,7 @@
 				F523947527E666CF00CEA124 /* CurrentBidModel.swift */,
 				F523947F27E6795E00CEA124 /* MainBidVModel.swift */,
 				F5C67D9F27EBCEF9008671A6 /* PokemonCardVModel.swift */,
+				F512BF8C27F7B36800C0E0BB /* CardWinningModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -341,6 +367,8 @@
 			files = (
 				F523947427E6611800CEA124 /* UserBidModel.swift in Sources */,
 				F5F76EC127BF279E00AE7AAC /* AccountView.swift in Sources */,
+				F512BF9327F806E300C0E0BB /* DateValidationService.swift in Sources */,
+				F512BF8D27F7B36800C0E0BB /* CardWinningModel.swift in Sources */,
 				F523947C27E6707A00CEA124 /* CurrentBidViewModel.swift in Sources */,
 				F599EE47279AB09E0006019B /* AppDelegate.swift in Sources */,
 				F599EE4C279AB4480006019B /* RegisterView.swift in Sources */,
@@ -352,6 +380,7 @@
 				F599EE2C279AAEE00006019B /* ContentView.swift in Sources */,
 				F58591B827C73F3E00DC7B62 /* DetailCardView.swift in Sources */,
 				F523947627E666CF00CEA124 /* CurrentBidModel.swift in Sources */,
+				F512BF8F27F7B90000C0E0BB /* FetchWinningsViewModel.swift in Sources */,
 				F523947A27E6690500CEA124 /* CurrentCardBidFetchManager.swift in Sources */,
 				F523948027E6795E00CEA124 /* MainBidVModel.swift in Sources */,
 				F58591AC27C5BD2800DC7B62 /* CardView.swift in Sources */,
@@ -359,6 +388,7 @@
 				F599EE4E279AB4530006019B /* LoginView.swift in Sources */,
 				F58591AF27C5ED7000DC7B62 /* PokemonCardsFeedNetworkProtocol.swift in Sources */,
 				F58591B127C5EE0D00DC7B62 /* PokemonCardModel.swift in Sources */,
+				F565E4EB27F2494300AB9D16 /* BidValidation.swift in Sources */,
 				F5C67DA027EBCEF9008671A6 /* PokemonCardVModel.swift in Sources */,
 				F599EE5D279AB9020006019B /* ValidationServices.swift in Sources */,
 				F58591B527C5F23F00DC7B62 /* PokemonCardsFeedViewModel.swift in Sources */,
@@ -372,7 +402,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F565E4E827F2482700AB9D16 /* BidPricingTests.swift in Sources */,
 				F599EE56279AB6340006019B /* ValidationServicesTests.swift in Sources */,
+				F512BF9127F8029B00C0E0BB /* DateTesting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

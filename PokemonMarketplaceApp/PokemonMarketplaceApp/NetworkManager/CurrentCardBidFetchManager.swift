@@ -157,4 +157,51 @@ class CurrentCardBidFetchManager: CurrentCardBidProtocol {
                     }
         })
     }
+    
+    func updateWinnings(cardID: String) {
+        self.fetchCurrentBid(cardID: cardID) { currentBid in
+            self.fetchBidObject(bidID: currentBid.BidID ?? "") { userBid in
+                self.db.collection("Users").whereField("id", isEqualTo: userBid.userID ?? "")
+                        .getDocuments(completion: { query, err in
+                            if let err = err {
+                                print("Error getting docs: \(err)")
+                            }else {
+                                for doc in query!.documents {
+                                    self.db.collection("Users").document(doc.documentID).updateData([
+                                        "wallet" : FieldValue.arrayUnion([cardID])
+                                    ])
+                                }
+                                
+                            }
+                })
+            }
+        }
+    }
+    
+    func fetchWinnings(userID: String, completion: @escaping ([CardWinningModel]) -> ()) {
+        
+        self.fetchUserObject(userID: userID) { user in
+            var winningCards = [CardWinningModel]()
+            guard let wallet = user.wallet else { return }
+            print("wallet", wallet)
+            for cardID in wallet {
+                PokemonCardsFeedNetworkManager().fetchPokemonCard(cardID: cardID) { card in
+                    let wCard = CardWinningModel(cardName: card.name ?? "", image: card.images?.small)
+                    winningCards.append(wCard)
+                    
+                    print("Winning Cards count", winningCards.count)
+                    print("Wallet count", wallet.count)
+                    
+                    if winningCards.count == wallet.count {
+                        print(wallet.count)
+                        completion(winningCards)
+                    }
+                }
+                
+               
+                
+            }
+            
+        }
+    }
 }
